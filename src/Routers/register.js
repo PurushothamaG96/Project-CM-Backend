@@ -9,6 +9,7 @@ router.use(express.json());
 //post method
 router.post('/register',async(req,res)=>{
    try{
+      console.log(req.body)
       const {email, password} = req.body
       //check email exist already
       const check = await userModel.findOne({email:email})
@@ -20,7 +21,7 @@ router.post('/register',async(req,res)=>{
       }
          bcrypt.hash(password, 10, async(err, cryptedPassword)=>{
             const result = await userModel.create({
-               email,
+               email:email,
                password:cryptedPassword
             })
             return res.status(201).json({

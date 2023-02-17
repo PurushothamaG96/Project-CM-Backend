@@ -11,9 +11,8 @@ router.use(express.urlencoded())
 
 //post method
 router.post("/login", async(req, res)=>{
-    
     try{
-        
+        console.log(req.body)
         const {email, password} = req.body;
         const data = await userModel.findOne({email:email})
         if(!data){
