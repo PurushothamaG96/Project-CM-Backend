@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const {model, Schema} = mongoose;
-const objectId = mongoose.ObjectId
+const objectId = require('mongoose').ObjectId
 //Schema define
 const contactSchema = new Schema({
     name: {type: String}, 
@@ -9,9 +9,9 @@ const contactSchema = new Schema({
     industry:String,
     email:String,
     phonenumber:Number,
-    category:String,
-    userID:{type:objectId, ref:"users"}
-})
+    country:String,
+    userId:{type:objectId, ref:"users", required:true}
+},{timestamps:true})
 //model connection
-const userModel = model("users", userSchema);
+const userModel = model("contacts", contactSchema);
 module.exports = userModel;
